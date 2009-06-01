@@ -20,5 +20,7 @@ class TimesheetAdmin(admin.ModelAdmin):
 	inlines = [
 		CommentInline,
 	]
+	list_display = ('job', 'person', 'date', 'hours',)
+	list_filter = ('person', 'date',)
 
 admin.site.register(Timesheet, TimesheetAdmin)

@@ -1,0 +1,33 @@
+{% extends "timesheet/base_timesheet.html" %}
+
+{% block title %}{{ block.super }}: {{ user.get_full_name }} for {{ week_begining }}{% endblock %}
+
+{% block content_title %}
+	<h2>{{ user.get_full_name }} for {{ week_begining }}</h2>
+{% endblock %}
+
+{% block content %}
+	<table border="0">
+		<thead>
+			<tr>
+				<th>Weekday</th>
+				<th>Total Hours</th>
+				<th>Printable CEO</th>
+			</tr>
+		</thead>
+		{% for day in timesheet %}
+		<tr>
+			<th>{{ day.date|date:"l" }}</th>
+			<td>{{ day.hours|default_if_none:"0" }}</td>
+			<td>{{ day.pceo|default_if_none:"0" }}</td>
+		</tr>
+		{% endfor %}
+		<tfoot>
+			<tr>
+				<th>Total</th>
+				<td>{{ week_hours|default_if_none:"0" }}</td>
+				<td>{{ week_pceo|default_if_none:"0" }}</td>
+			</tr>
+		</tfoot>
+	</table>
+{% endblock %}
