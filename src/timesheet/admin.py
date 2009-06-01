@@ -3,10 +3,7 @@ from django.contrib import admin
 from django.contrib.contenttypes import generic
 from django.contrib.comments.models import Comment
 
-from timesheet.models import Manager, Timesheet
-
-class ManagerAdmin(admin.ModelAdmin):
-	list_display = ('__unicode__',)
+from timesheet.models import Timesheet
 
 class CommentForm(forms.ModelForm):
 	class Meta:
@@ -24,5 +21,4 @@ class TimesheetAdmin(admin.ModelAdmin):
 		CommentInline,
 	]
 
-admin.site.register(Manager, ManagerAdmin)
 admin.site.register(Timesheet, TimesheetAdmin)
